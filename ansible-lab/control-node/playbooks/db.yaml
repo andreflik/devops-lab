@@ -1,0 +1,17 @@
+---
+- name: Configurar servidor de bando de dados
+  hosts: db01
+
+  user: vagrant
+  # become: yes
+
+  # var_files: 
+  #   - vars/main.yaml
+  # vars:
+  #   - dbname: "db01"
+  #   - dbusername: "root"
+  #   - dbpassword: "andredevops"
+  tasks:
+    - name: Configurar hots do lab ansible
+      lineinfile:  
+
