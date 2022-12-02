@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"C:/Users/andrejessy/DevOps/docker-lab","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}
