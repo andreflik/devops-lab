@@ -16,13 +16,13 @@
           name: app
           comment: Usuario de aplicação
           uid: 500
-      - name: Donwload do maven 
-        get_url:
-          url: https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.1.0/apache-maven-3.1.0-bin.tar.gz
-          dest: /opt/apache-maven-3.1.0-bin.tar.gz
+      # - name: Donwload do maven 
+      #   get_url:
+      #     url: https://repo.maven.apache.org/maven2/org/apache/maven/apache-maven/3.1.0/apache-maven-3.1.0-bin.tar.gz
+      #     dest: /opt/apache-maven-3.1.0-bin.tar.gz
       - name: Unzip do pacote maven
         ansible.builtin.unarchive:
-          src: /opt/apache-maven-3.1.0-bin.tar.gz
+          src: /opt/apache-maven-3.8.6-bin.tar.gz
           dest: /opt/
           remote_src: yes
       - name: Instalação Java
@@ -45,12 +45,16 @@
             dest: /opt/notes
             clone: yes
             force: yes
+      - name: Configurar arquivo pom.xml com repositorios maven central
+        template:
+          src: pom.xml
+          dest: /opt/notes/pom.xml
       - name: Configurar arquivo de propriedades para camada de banco de dados
         template: 
           src: application.properties
           dest: /opt/notes/src/main/resources/application.properties
       - name: Gerar pacote da aplicação
-        command: mvn -f /opt/notes/pom.xml package
+        command: /opt/apache-maven-3.8.6/bin/mvn -f
         become_user: app
       - name: Registrar versão atual do pacote
         shell:
